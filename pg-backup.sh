@@ -9,7 +9,7 @@
 # consistent on restore).
 #
 # Usage: ./pg_backup [name]   (name defaults to the current timestamp)
-# Output: backups/<name>.tz (a single gzip'd tar file)
+# Output: backups-pg/<name>.tz (a single gzip'd tar file)
 set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -19,7 +19,7 @@ case "$BACKUP_NAME" in
   */*) echo "ERROR: backup name must not contain '/'" >&2; exit 1 ;;
 esac
 
-BACKUP_DIR="backups"
+BACKUP_DIR="backups-pg"
 BACKUP_FILE="$BACKUP_DIR/${BACKUP_NAME}.tz"
 mkdir -p "$BACKUP_DIR"
 

@@ -11,7 +11,7 @@ set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-BACKUP_DIR="backups"
+BACKUP_DIR="backups-pg"
 
 if [ -n "${1:-}" ]; then
   BACKUP_NAME="$1"

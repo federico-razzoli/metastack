@@ -2,5 +2,7 @@
 extra-users.conf
 pg-config/
 pgadmin-config/
-backups/*
-!backups/.keep
+backups-pg/*
+!backups-pg/.keep
+backups-mb/*
+!backups-mb/.keep

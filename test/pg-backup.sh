@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-rm -f backups/test1.tz backups/test2.tz
+rm -f backups-pg/test1.tz backups-pg/test2.tz
 docker compose --ansi never exec -T postgres psql -U pgadmin -d spg -c "DROP TABLE IF EXISTS backup_test;"
 docker compose --ansi never exec -T postgres psql -U pgadmin -d spg -c "CREATE TABLE backup_test (id serial primary key);"
 docker compose --ansi never exec -T postgres psql -U pgadmin -d spg -c "INSERT INTO backup_test DEFAULT VALUES;"
