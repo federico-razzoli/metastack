@@ -13,6 +13,8 @@ Metabase is additionally restricted to the `public` schema).
 Use PgAdmin or connect to PostgreSQL to manage the raw data.
 Then you can play with PostgreSQL.
 
+**This environment is designed for learning and testing. It is not secure or performant.**
+
 ## Setup
 
 1. **Install Docker** (fresh Ubuntu box only, skip if Docker is already installed):
