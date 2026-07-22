@@ -180,3 +180,9 @@ The following list of security problems might not be complete.
 - Metabase and PgAdmin share the same users and passwords.
 - pgAdmin and Metabase have no HTTPS configured here.
 - Credentials live in `.env` in this directory.
+
+## License and copyright
+
+Copyright: Federico Razzoli  2026
+License: [AGPL-3.0-only|https://opensource.org/license/agpl-3-0]
+
