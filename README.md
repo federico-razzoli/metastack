@@ -154,4 +154,3 @@ you want changes to reset on teardown.
   but rotate the two independently (edit each app's own settings) if you
   ever hand one of these tools to a different person than the other.
   Metabase also has no HTTPS configured here, same caveat as pgAdmin above.
-# metastack
