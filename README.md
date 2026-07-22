@@ -2,10 +2,10 @@
 SPDX-License-Identifier: AGPL-3.0-only
 -->
 
-# Metabase + PostgreSQL + pgAdmin
+# Metabase + PostgreSQL + PgAdmin
 
 A stack to manage a PostgreSQL database and then experiment with Metabase.
-It's a Docker Compose environment that includes PostgreSQL, pgAdmin, and
+It's a Docker Compose environment that includes PostgreSQL, PgAdmin, and
 Metabase. All containers are pre-wired with the PostgreSQL connection to the `spg`
 database, password included so no login prompt appears on first use;
 Metabase is additionally restricted to the `public` schema).
@@ -45,7 +45,7 @@ Reference to individual projects:
 
    - `POSTGRES_PASSWORD` — random password for the `pgadmin` PostgreSQL user
    - `PGADMIN_DEFAULT_PASSWORD` — random password for the `PGADMIN_DEFAULT_EMAIL`
-     (`admin@example.com`) pgAdmin web login, also reused as the Metabase
+     (`admin@example.com`) PgAdmin web login, also reused as the Metabase
      admin login password (same email, same password)
 
    On later runs it reuses the same `.env` instead of regenerating
