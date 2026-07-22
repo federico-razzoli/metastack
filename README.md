@@ -6,7 +6,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 
 A stack to manage a PostgreSQL database and then experiment with Metabase.
 It's a Docker Compose environment that includes PostgreSQL, pgAdmin, and
-Metabase. All containers are pre-wired with the Postgres connection to the `spg`
+Metabase. All containers are pre-wired with the PostgreSQL connection to the `spg`
 database, password included so no login prompt appears on first use;
 Metabase is additionally restricted to the `public` schema).
 
@@ -36,21 +36,21 @@ Then you can play with PostgreSQL.
    On first run this generates and stores, in a `.env` file (mode `600`,
    not committed to version control):
 
-   - `POSTGRES_PASSWORD` — random password for the `pgadmin` Postgres user
+   - `POSTGRES_PASSWORD` — random password for the `pgadmin` PostgreSQL user
    - `PGADMIN_DEFAULT_PASSWORD` — random password for the `PGADMIN_DEFAULT_EMAIL`
      (`admin@example.com`) pgAdmin web login, also reused as the Metabase
      admin login password (same email, same password)
 
    On later runs it reuses the same `.env` instead of regenerating
-   passwords — Postgres only applies `POSTGRES_PASSWORD` the first time its
+   passwords — PostgreSQL only applies `POSTGRES_PASSWORD` the first time its
    data volume is initialized, so a new password on a later run would stop
    matching the actual database password.
 
-   The script then starts the containers, waits for Postgres and Metabase
+   The script then starts the containers, waits for PostgreSQL and Metabase
    to report healthy, and configures Metabase via its REST API (the
    open-source edition has no static config-file support like pgAdmin's
    `servers.json`): it creates the admin account on first run (or logs in
-   on later runs) and adds the `spg` Postgres connection, restricted to the
+   on later runs) and adds the `spg` PostgreSQL connection, restricted to the
    `public` schema, if it isn't already there. Metabase can take a couple
    of minutes to boot on first run, so the script retries each of these
    steps for several minutes before giving up — but if Metabase still
@@ -58,7 +58,7 @@ Then you can play with PostgreSQL.
    `setup.sh` fails outright (non-zero exit) instead of leaving Metabase
    half-configured; check `docker compose logs metabase` and re-run.
 
-   Finally it runs best-effort checks: that Postgres (5432), pgAdmin (80,
+   Finally it runs best-effort checks: that PostgreSQL (5432), pgAdmin (80,
    HTTP), and Metabase (3000, HTTP) are listening on all interfaces, plus a
    best-effort check against your public IP. That public-IP check can
    under-report (same-host self-checks can fail due to hairpin NAT even
@@ -100,7 +100,7 @@ On every later run, it provisions whatever users are listed.
 3. A database named **spg** is already connected, scoped to the `public`
    schema only — no need to add it manually.
 
-## Postgres configuration
+## PostgreSQL configuration
 
 `postgresql.conf` and `pg_hba.conf` are bind-mounted from `pg-config/` on
 the host into the container (read-only), so you can edit them directly
@@ -119,12 +119,12 @@ scratch: `./setup.sh` seeds it from the tracked baseline in
 `./teardown.sh` deletes it after bringing the stack down. So any edits
 you make only live as long as the container does — destroy the container
 (`./teardown.sh`) and the next `./setup.sh` starts you back at the
-tracked defaults. Postgres's actual data is unaffected either way (it
+tracked defaults. PostgreSQL' actual data is unaffected either way (it
 lives in the separate `postgres_data` Docker volume).
 
 Note: `ALTER SYSTEM` (run from SQL) writes `postgresql.auto.conf` into
 the data directory, not into `pg-config/`, so it isn't covered by this
-reset — that's a Postgres behavior, not something this setup can
+reset — that's a PostgreSQL behavior, not something this setup can
 intercept. Stick to editing the files in `pg-config/` from the host if
 you want changes to reset on teardown.
 
