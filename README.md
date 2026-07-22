@@ -170,21 +170,26 @@ To restore a specific backup:
 ./mb-restore.sh <backup-name>
 ```
 
-## Claude Code skill
+## Claude Agent Skill
 
-This repo ships a Claude Code skill at `.claude/skills/metastack-ops/` that
-teaches an agent how to set up, operate, and back up this stack. If you're
-running Claude Code inside this directory, project skills are picked up
-automatically — no install step needed.
+This repo ships a Claude Agent Skill at `.claude/skills/metastack-ops/` that
+teaches an agent how to set up, operate, and back up this stack. The
+`SKILL.md` format is shared across Claude Code, Claude.ai, and the Claude
+Agent SDK/API, so it can be used with any of them:
 
-To use it from Claude Code when your working directory is elsewhere, either
-add this repo as an additional directory to the session (`/add-dir
-/path/to/metastack`), or copy the skill folder into your personal skills
-directory:
-
-```bash
-cp -r .claude/skills/metastack-ops ~/.claude/skills/
-```
+- **Claude Code**: project skills under `.claude/skills/` are picked up
+  automatically when Claude Code runs inside this directory — no install
+  step needed. From a different working directory, either add this repo to
+  the session (`/add-dir /path/to/metastack`) or copy the folder into your
+  personal skills directory:
+  ```bash
+  cp -r .claude/skills/metastack-ops ~/.claude/skills/
+  ```
+- **Claude.ai**: zip the `metastack-ops/` folder and upload it as a custom
+  Skill in Settings, then enable it for your conversation.
+- **Claude Agent SDK/API**: point the SDK's skills option at
+  `.claude/skills/metastack-ops/`, or upload it as a Skill through the API,
+  to make it available to an agent built on the SDK/API.
 
 ## Security notes
 
