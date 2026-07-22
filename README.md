@@ -170,6 +170,22 @@ To restore a specific backup:
 ./mb-restore.sh <backup-name>
 ```
 
+## Claude Code skill
+
+This repo ships a Claude Code skill at `.claude/skills/metastack-ops/` that
+teaches an agent how to set up, operate, and back up this stack. If you're
+running Claude Code inside this directory, project skills are picked up
+automatically — no install step needed.
+
+To use it from Claude Code when your working directory is elsewhere, either
+add this repo as an additional directory to the session (`/add-dir
+/path/to/metastack`), or copy the skill folder into your personal skills
+directory:
+
+```bash
+cp -r .claude/skills/metastack-ops ~/.claude/skills/
+```
+
 ## Security notes
 
 **As stated, this environment is designed for learning and testing only.
