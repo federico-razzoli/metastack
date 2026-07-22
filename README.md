@@ -185,5 +185,5 @@ The following list of security problems might not be complete.
 
 Copyright: Federico Razzoli  2026
 
-License: [AGPL-3.0-only|https://opensource.org/license/agpl-3-0]
+License: AGPL 3.0
 
