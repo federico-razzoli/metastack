@@ -9,7 +9,7 @@
 # back up -- this guarantees a consistent copy since nothing is writing
 # to the H2 files while stopped.
 #
-# Usage: ./metabase-backup.sh [name]   (name defaults to the current timestamp)
+# Usage: ./mb-backup.sh [name]   (name defaults to the current timestamp)
 # Output: backups-mb/<name>.tz (a single gzip'd tar file)
 set -euo pipefail
 

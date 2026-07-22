@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # SPDX-License-Identifier: AGPL-3.0-only
 #
-# Restores a backup taken by ./metabase-backup.sh. This is destructive:
+# Restores a backup taken by ./mb-backup.sh. This is destructive:
 # it stops Metabase, wipes the current metabase_data contents, extracts
 # the backup in their place, then starts Metabase back up.
 #
-# Usage: ./metabase-restore.sh [name]   (name defaults to the most recent metabase backup)
+# Usage: ./mb-restore.sh [name]   (name defaults to the most recent metabase backup)
 set -euo pipefail
 
 cd "$(dirname "${BASH_SOURCE[0]}")"

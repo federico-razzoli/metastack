@@ -91,8 +91,8 @@ Postgres (hot backup, `pg_basebackup`, cluster keeps running):
 
 Metabase (briefly stops the container for a consistent H2 file copy):
 ```
-./metabase-backup.sh [name]   # writes backups-mb/<name>.tz
-./metabase-restore.sh [name]  # defaults to most recent; DESTRUCTIVE, wipes metabase_data
+./mb-backup.sh [name]   # writes backups-mb/<name>.tz
+./mb-restore.sh [name]  # defaults to most recent; DESTRUCTIVE, wipes metabase_data
 ```
 
 Both `*-restore.sh` scripts stop the service, wipe its volume, extract the

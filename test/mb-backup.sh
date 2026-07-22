@@ -25,15 +25,15 @@ mb_get_site_name() {
 
 SESSION="$(mb_session)"
 mb_set_site_name "$SESSION" "backup_test_1"
-./metabase-backup.sh test1
+./mb-backup.sh test1
 
 mb_set_site_name "$SESSION" "backup_test_2"
-./metabase-backup.sh test2
+./mb-backup.sh test2
 
-./metabase-restore.sh test1
+./mb-restore.sh test1
 SESSION="$(mb_session)"
 [ "$(mb_get_site_name "$SESSION")" = "backup_test_1" ] && printf '\033[32mCORRECT\033[0m\n' || printf '\033[31mWRONG\033[0m\n'
 
-./metabase-restore.sh test2
+./mb-restore.sh test2
 SESSION="$(mb_session)"
 [ "$(mb_get_site_name "$SESSION")" = "backup_test_2" ] && printf '\033[32mCORRECT\033[0m\n' || printf '\033[31mWRONG\033[0m\n'
