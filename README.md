@@ -130,28 +130,11 @@ you want changes to reset on teardown.
 
 ## Security notes
 
-- **Postgres is open on 5432 to the whole internet** by explicit choice.
-  It's still password-protected, but this is a materially larger attack
-  surface than restricting it to known IPs. If you change your mind,
-  remove the `ports: ["5432:5432"]` mapping in `docker-compose.yml` (access
-  it via pgAdmin or `docker compose exec postgres psql` instead), or front
-  it with a firewall rule.
-- **pgAdmin has no HTTPS configured here.** The login password and session
-  token travel in plaintext over the network. Fine for a private/trusted
-  network; not fine for exposing over the open internet as-is. Unlike
-  DbGate, the pgAdmin image does have built-in TLS support (set
-  `PGADMIN_ENABLE_TLS` and mount a cert/key at `/certs/server.cert` and
-  `/certs/server.key`, which switches it to listening on 443) — that's an
-  option in addition to fronting it with a reverse proxy (e.g. nginx, or
-  `nginxproxy/nginx-proxy` + `nginxproxy/acme-companion` for automatic
-  Let's Encrypt) once you have a domain name.
-- Credentials live in `.env` in this directory, `chmod 600`. Back it up
-  somewhere safe; losing it doesn't lose data (Postgres data survives in
-  its own volume) but you'd need to reset the Postgres password manually
-  to regain access.
-- **Metabase reuses the pgAdmin admin password** by design (both log in as
-  `admin@example.com` with the same password). That means anyone who can
-  log into one can log into the other — fine for a single trusted admin,
-  but rotate the two independently (edit each app's own settings) if you
-  ever hand one of these tools to a different person than the other.
-  Metabase also has no HTTPS configured here, same caveat as pgAdmin above.
+**As stated, this environment is designed for learning and testing only.
+As a consequence, it is not secure.**
+The following list of security problems might not be complete.
+
+- PostgreSQL's port 5432 is open.
+- Metabase and PgAdmin share the same users and passwords.
+- pgAdmin and Metabase have no HTTPS configured here.
+- Credentials live in `.env` in this directory.
