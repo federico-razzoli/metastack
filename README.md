@@ -136,7 +136,7 @@ To take a backup, invoke:
 ./pg-backup.sh <backup-name>
 ```
 
-Backups are stored in `backups/`.
+Backups are stored in `backups-pg/`.
 
 By default, `backup-name` is the current timestamp.
 This is a hot backup. It's taken while PostgreSQL is running.
