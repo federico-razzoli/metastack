@@ -23,12 +23,12 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 ENV_FILE=".env"
 
 if ! command -v docker &> /dev/null || ! docker compose version &> /dev/null; then
-  echo "docker / docker compose not found. Run install-docker.sh first." >&2
+  echo "docker / docker compose not found. Run install-docker.sh first" >&2
   exit 1
 fi
 
 if ! command -v jq &> /dev/null; then
-  echo "jq not found (needed to configure Metabase via its API). Run install-docker.sh first." >&2
+  echo "jq not found (needed to configure Metabase via its API). Run install-docker.sh first" >&2
   exit 1
 fi
 
@@ -92,7 +92,7 @@ if [ "$(id -u)" = "0" ]; then
   chown 5050 "$PGADMIN_CONFIG_DIR"/pgpass
 else
   echo "WARNING: not running as root — could not chown pgpass to uid 5050;" >&2
-  echo "         pgAdmin's pre-loaded password may fail to copy on first launch." >&2
+  echo "         pgAdmin's pre-loaded password may fail to copy on first launch" >&2
 fi
 
 echo "==> Starting Postgres, pgAdmin, and Metabase"
@@ -105,7 +105,7 @@ for _ in $(seq 1 30); do
   sleep 2
 done
 if [ "$status" != "healthy" ]; then
-  echo "WARNING: Postgres did not report healthy in time. Check 'docker compose logs postgres'." >&2
+  echo "WARNING: Postgres did not report healthy in time. Check 'docker compose logs postgres'" >&2
 fi
 
 echo "==> Waiting for Metabase to become healthy (first boot can take a couple of minutes)"
@@ -116,7 +116,7 @@ for _ in $(seq 1 200); do
   sleep 3
 done
 if [ "$mb_status" != "healthy" ]; then
-  echo "ERROR: Metabase did not become healthy after 10 minutes. Check 'docker compose logs metabase'." >&2
+  echo "ERROR: Metabase did not become healthy after 10 minutes. Check 'docker compose logs metabase'" >&2
   exit 1
 fi
 
@@ -151,7 +151,7 @@ for _ in $(seq 1 20); do
   sleep 3
 done
 if [ -z "$MB_PROPS" ] || ! echo "$MB_PROPS" | jq -e . > /dev/null 2>&1; then
-  echo "ERROR: Metabase's API never returned a valid response from $MB_URL/api/session/properties." >&2
+  echo "ERROR: Metabase's API never returned a valid response from $MB_URL/api/session/properties" >&2
   exit 1
 fi
 SETUP_TOKEN="$(echo "$MB_PROPS" | jq -r '."setup-token" // empty')"
@@ -184,7 +184,7 @@ else
 fi
 
 if [ -z "$MB_SESSION" ]; then
-  echo "ERROR: could not authenticate to Metabase's API (setup/login both failed after retrying)." >&2
+  echo "ERROR: could not authenticate to Metabase's API (setup/login both failed after retrying)" >&2
   exit 1
 fi
 
@@ -198,7 +198,7 @@ for _ in $(seq 1 20); do
   sleep 3
 done
 if [ -z "$already_added" ]; then
-  echo "ERROR: could not query Metabase's /api/database after retrying." >&2
+  echo "ERROR: could not query Metabase's /api/database after retrying" >&2
   exit 1
 fi
 
@@ -231,7 +231,7 @@ else
   if [ "$added" = true ]; then
     echo "    OK: added the 'spg' Postgres connection to Metabase (public schema only)"
   else
-    echo "ERROR: failed to add the 'spg' Postgres connection to Metabase after retrying." >&2
+    echo "ERROR: failed to add the 'spg' Postgres connection to Metabase after retrying" >&2
     exit 1
   fi
 fi
