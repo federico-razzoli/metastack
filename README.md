@@ -15,6 +15,13 @@ Then you can play with PostgreSQL.
 
 **This environment is designed for learning and testing. It is not secure or performant.**
 
+Reference to individual projects:
+
+- [Metabase documentation|https://www.metabase.com/docs/latest/]
+- [PostgreSQL documentation|https://www.postgresql.org/docs/]
+- [PgAdmin|https://www.pgadmin.org/]
+- [H2|https://h2database.com/] - Used internally by Metabase
+
 ## Setup
 
 1. **Install Docker** (fresh Ubuntu box only, skip if Docker is already installed):
