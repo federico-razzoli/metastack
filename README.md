@@ -128,29 +128,39 @@ reset — that's a PostgreSQL behavior, not something this setup can
 intercept. Stick to editing the files in `pg-config/` from the host if
 you want changes to reset on teardown.
 
-## PostgreSQL backups
+## Backups
+
+PostgreSQL backups are stored in `backups-pg`. They are compressed physical
+backups taken without a downtime.
+
+Metabase backups are stored in `backups-mb`. They are compressed copies of
+Metabase's internal H2 database. Taking them causes a Metabase restart.
 
 To take a backup, invoke:
 
 ```
+# PostgreSQL backup
 ./pg-backup.sh <backup-name>
+# Metabase backup
+./mb-backup.sh <backup-name>
 ```
 
-Backups are stored in `backups-pg/`.
-
 By default, `backup-name` is the current timestamp.
-This is a hot backup. It's taken while PostgreSQL is running.
 
 To restore the latest backup:
 
 ```
+# PostgreSQL
 ./pg-restore.sh
+# Metabase
+./mb-restore.sh
 ```
 
 To restore a specific backup:
 
 ```
 ./pg-restore.sh <backup-name>
+./mb-restore.sh <backup-name>
 ```
 
 ## Security notes
