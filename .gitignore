@@ -1,0 +1,6 @@
+.env
+extra-users.conf
+pg-config/
+pgadmin-config/
+backups/*
+!backups/.keep
