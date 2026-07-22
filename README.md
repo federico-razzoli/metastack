@@ -2,17 +2,16 @@
 SPDX-License-Identifier: AGPL-3.0-only
 -->
 
-# pgAdmin + PostgreSQL + Metabase
+# Metabase + PostgreSQL + pgAdmin
 
-Docker Compose stack: a dedicated bridge network, PostgreSQL, pgAdmin, and
-Metabase (both pre-wired with the Postgres connection to the `spg`
+A stack to manage a PostgreSQL database and then experiment with Metabase.
+It's a Docker Compose environment that includes PostgreSQL, pgAdmin, and
+Metabase. All containers are pre-wired with the Postgres connection to the `spg`
 database, password included so no login prompt appears on first use;
 Metabase is additionally restricted to the `public` schema).
 
-There is no HTTPS in this setup (skipped — no domain name available yet)
-and PostgreSQL's port 5432 is open to all incoming traffic. Both were
-explicit choices; see "Security notes" below before exposing this to the
-internet.
+Use PgAdmin or connect to PostgreSQL to manage the raw data.
+Then you can play with PostgreSQL.
 
 ## Setup
 
