@@ -17,10 +17,10 @@ Then you can play with PostgreSQL.
 
 Reference to individual projects:
 
-- [Metabase documentation|https://www.metabase.com/docs/latest/]
-- [PostgreSQL documentation|https://www.postgresql.org/docs/]
-- [PgAdmin|https://www.pgadmin.org/]
-- [H2|https://h2database.com/] - Used internally by Metabase
+- [Metabase documentation](https://www.metabase.com/docs/latest/)
+- [PostgreSQL documentation](https://www.postgresql.org/docs/)
+- [PgAdmin](https://www.pgadmin.org/)
+- [H2](https://h2database.com/) - Used internally by Metabase
 
 ## Setup
 
