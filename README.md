@@ -128,6 +128,31 @@ reset — that's a PostgreSQL behavior, not something this setup can
 intercept. Stick to editing the files in `pg-config/` from the host if
 you want changes to reset on teardown.
 
+## PostgreSQL backups
+
+To take a backup, invoke:
+
+```
+./pg-backup.sh <backup-name>
+```
+
+Backups are stored in `backups/`.
+
+By default, `backup-name` is the current timestamp.
+This is a hot backup. It's taken while PostgreSQL is running.
+
+To restore the latest backup:
+
+```
+./pg-restore.sh
+```
+
+To restore a specific backup:
+
+```
+./pg-restore.sh <backup-name>
+```
+
 ## Security notes
 
 **As stated, this environment is designed for learning and testing only.
